@@ -103,6 +103,10 @@ public class ISBNValidator {
         }
     }
 
+    /**
+     * main method of class
+     * @param args
+     */
     public static void main(String[] args){
         ISBNValidator app = new ISBNValidator ();
         System.out.println("* ISBN Validator Program *");
