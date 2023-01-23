@@ -59,24 +59,21 @@ public class ISBNValidator {
      * @return true if valid, false otherwise
      */
     public boolean isValidISBN(String isbn) {
-        int prefix=integer.parseint(isbn.split("-")[0]);
-            if(prefix !=978 || prefix !=979)
-                return false;
+        int prefix=Integer.parseInt(isbn.split("-")[0]);
+        //System.out.println("PREFIX: " + prefix + " " + (prefix == 978) + " " + (prefix == 979));
+        if(prefix !=978 && prefix !=979)
+            return false;
         isbn=isbn.replaceAll("-","");
         int test=0;
         for(int i=0; i<isbn.length(); i++ ){
-            int num =integer.parseint(isbn.substring(i,i+1));
-            if(i%2==0){
-                test t=num;
+            int num =Integer.parseInt(isbn.substring(i,i+1));
+            if(i%2==0)
+                test += num;
             else
-                test t=3*num;
-            }
-            return test %10==0;
+                test += (3*num);
         }
-        if(test=0)
-            return true;
-        else
-            return false;
+        //System.out.println("DEBUG: " + test + " " + test%10);
+        return test %10==0;
     }
 
     /**
@@ -84,8 +81,6 @@ public class ISBNValidator {
      */
     public void runProgram()    {
         Scanner userin = new Scanner(System.in);
-        System.out.println("* ISBN Validator Program *");
-        System.out.println("...Importing data...");
         while(true) {
             System.out.println("All ISBN data has been imported and validated. Would you like to:");
             System.out.println("\t1) View all valid ISBN numbers\n" +
